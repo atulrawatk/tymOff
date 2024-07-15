@@ -1,4 +1,4 @@
-# TymOff App
+# TymOff
 
 Welcome to TymOff! Where you can take your time off by chilling out and engaging with a vibrant community. This application allows users to connect, share, and engage through posts, videos, images, and comments.
 
