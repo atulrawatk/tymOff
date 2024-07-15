@@ -3,11 +3,11 @@ Welcome to the TymOff! Where you can take your time off by chilling out and enga
 This application allows users to connect, share, and engage through posts, videos, images, and comments.
 
 Features
-#Post Videos and Images:
+1.Post Videos and Images:
 Share your favorite moments by posting videos and images.
-#Comment System:
+Comment System:
 Engage with other users by commenting on their posts.
-#Like and Share: 
+Like and Share: 
 Show your appreciation by liking and sharing posts.
 #User Profiles:
 Create and customize your user profile.
