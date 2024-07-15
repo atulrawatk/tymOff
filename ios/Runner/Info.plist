@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>BGTaskSchedulerPermittedIdentifiers</key>
+	<array>
+		<string>com.tymoff</string>
+	</array>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>en</string>
+	<key>CFBundleDisplayName</key>
+	<string>tymoff</string>
+	<key>CFBundleExecutable</key>
+	<string>$(EXECUTABLE_NAME)</string>
+	<key>CFBundleIdentifier</key>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>tymoff</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>$(MARKETING_VERSION)</string>
+	<key>CFBundleSignature</key>
+	<string>????</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>com.tymoff</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.googleusercontent.apps.418600127287-83k4jr08f73e5u86209o3khli07sag1h</string>
+				<string>fb2542449949180104</string>
+			</array>
+		</dict>
+		<dict/>
+	</array>
+	<key>CFBundleVersion</key>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
+	<key>FDAllFilesDownloadedMessage</key>
+	<string>All files have been downloaded</string>
+	<key>FDMaximumConcurrentTasks</key>
+	<integer>5</integer>
+	<key>FUAllFilesUploadedMessage</key>
+	<string>All files have been uploaded</string>
+	<key>FUMaximumConnectionsPerHost</key>
+	<integer>3</integer>
+	<key>FUMaximumUploadOperation</key>
+	<integer>3</integer>
+	<key>FacebookAppID</key>
+	<string>2542449949180104</string>
+	<key>FacebookDisplayName</key>
+	<string>tymoff</string>
+	<key>FirebaseAppDelegateProxyEnabled</key>
+	<false/>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>fbapi</string>
+		<string>fb-messenger-share-api</string>
+		<string>fbauth2</string>
+		<string>fbshareextension</string>
+	</array>
+	<key>LSRequiresIPhoneOS</key>
+	<true/>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
+	<key>NSAppleMusicUsageDescription</key>
+	<string>Need Music Permission when user wants to access music related features</string>
+	<key>NSBluetoothPeripheralUsageDescription</key>
+	<string>Need bluetooth Permission when user wants to access bluetooth related features</string>
+	<key>NSCalendarsUsageDescription</key>
+	<string>Need Calendars Permission when user wants to access Calendars related features</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Need camera Permission require, So user can upload pics or video via camera, or can scan QR code for Login on web</string>
+	<key>NSContactsUsageDescription</key>
+	<string>Need contacts Permission when user wants to access contacts related features</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Use Location to feed content related to user nearby location</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Use Location whenever available to feed content based on Location</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Need microphone Permission when user wants to access microphone related features</string>
+	<key>NSMotionUsageDescription</key>
+	<string>Need motion Permission when user wants to access motion related features</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Would like to save photos to your photo gallery for Pics / Video uploading purpose</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Need photos Permission when user wants to access photos related features</string>
+	<key>NSRemindersUsageDescription</key>
+	<string>Need reminders Permission when user wants to access reminders related features</string>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>Need speech Permission when user wants to access speech related features</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>fetch</string>
+		<string>remote-notification</string>
+	</array>
+	<key>UILaunchStoryboardName</key>
+	<string>LaunchScreen</string>
+	<key>UIMainStoryboardFile</key>
+	<string>Main</string>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
+	<key>UISupportedInterfaceOrientations~ipad</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationPortraitUpsideDown</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<false/>
+	<key>firebase_crashlytics_collection_enabled</key>
+	<false/>
+	<key>io.flutter.embedded_views_preview</key>
+	<true/>
+	<key>kTCCServiceMediaLibrary</key>
+	<string>Need media Permission when user wants to access media related features</string>
+</dict>
+</plist>

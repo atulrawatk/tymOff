@@ -1,0 +1,213 @@
+def localProperties = new Properties()
+def localPropertiesFile = rootProject.file('local.properties')
+if (localPropertiesFile.exists()) {
+  localPropertiesFile.withReader('UTF-8') { reader -> localProperties.load(reader)
+  }
+}
+
+def flutterRoot = localProperties.getProperty('flutter.sdk')
+if (flutterRoot == null) {
+  throw new GradleException(
+      "Flutter SDK not found. Define location with flutter.sdk in the local.properties file.")
+}
+
+def flutterVersionCode = localProperties.getProperty('flutter.versionCode')
+if (flutterVersionCode == null) {
+  flutterVersionCode = '1'
+}
+
+def flutterVersionName = localProperties.getProperty('flutter.versionName')
+if (flutterVersionName == null) {
+  flutterVersionName = '1.0'
+}
+
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
+
+def keystoreProperties = new Properties()
+def keystorePropertiesFile = rootProject.file('key_release.properties')
+if (keystorePropertiesFile.exists()) {
+  keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+}
+
+android {
+  compileSdkVersion 28
+
+  sourceSets {
+    main.java.srcDirs += 'src/main/kotlin'
+  }
+
+  lintOptions {
+    disable 'InvalidPackage'
+  }
+
+  defaultConfig {
+    // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
+    applicationId "com.tymoff"
+    minSdkVersion 19
+    targetSdkVersion 28
+    versionCode 20
+    versionName "0.2.0"
+    testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    multiDexEnabled true
+//    ndk {
+//      abiFilters 'x86', 'armeabi-v7a'
+//    }
+  }
+
+  signingConfigs {
+    release {
+      keyAlias keystoreProperties['keyAlias']
+      keyPassword keystoreProperties['keyPassword']
+      storeFile file(keystoreProperties['storeFile'])
+      storePassword keystoreProperties['storePassword']
+    }
+  }
+  buildTypes {
+    release {
+      signingConfig signingConfigs.release
+
+      minifyEnabled true
+      useProguard true
+      proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+      ndk{
+        abiFilters "armeabi-v7a", "arm64-v8a", "x86", "x86_64"
+      }
+    }
+  }
+
+  splits {
+/*
+
+    density {
+      enable true
+      exclude "tvdpi", "xxxhdpi" // Add or modify the supported density here
+      compatibleScreens 'small', 'normal', 'large', 'xlarge' // Discouraged to touch this
+    }
+*/
+
+    // Configures multiple APKs based on ABI.
+    abi {
+
+      // Enables building multiple APKs per ABI.
+      enable true
+
+      // By default all ABIs are included, so use reset() and include to specify that we only
+      // want APKs for x86 and x86_64.
+
+      // Resets the list of ABIs that Gradle should create APKs for to none.
+      reset()
+
+      // Specifies a list of ABIs that Gradle should create APKs for.
+      include "x86", "x86_64", "armeabi", "armeabi-v7a", "arm64-v8a"
+
+      // Specifies that we do not want to also generate a universal APK that includes all ABIs.
+      universalApk true
+    }
+  }
+  // Map for the version code that gives each ABI a value.
+  def abiCodes = ['x86':1, 'x86_64':2, 'armeabi-v7a':3, 'arm64-v8a':4]
+
+  // APKs for the same app that all have the same version information.
+  android.applicationVariants.all { variant ->
+    // Assigns a different version code for each output APK.
+    variant.outputs.all {
+      output ->
+        def abiName = output.getFilter(com.android.build.OutputFile.ABI)
+        output.versionCodeOverride = abiCodes.get(abiName, 0) + 1 + variant.versionCode
+
+        // Rename Apk
+        def formattedDate = new Date().format('yyyyMMdd')
+
+        def fileName = output.outputFile.name + "_" +"tymoff" + "_Ver." + output.versionCodeOverride + "_" + formattedDate + "_" + "R" + ".apk"
+
+        outputFileName = new File("./../../../../../build/", fileName)
+    }
+    variant.assemble.doLast {
+      variant.outputs.all { output ->
+        if (output.zipAlign) {
+          archiveAPK(variant, output);
+        }
+      }
+    }
+  }
+}
+
+def getDpiId(String density) {
+  def DPI_ID = ['null': 0, 'ldpi': 1, 'mdpi': 2, 'hdpi': 3, 'xhdpi': 4, 'xxhdpi': 5]
+  // Add here your supported dpi
+  if (density != null)
+    return DPI_ID.get(density);
+  return 0;
+}
+
+def getDpiName(String density) {
+    def DPI_NAME = ['null': 'UNIVERSAL', 'ldpi': 'LDPI', 'mdpi': 'MDPI', 'hdpi': 'HDPI', 'xhdpi': 'XHDPI', 'xxhdpi': 'XXHDPI']
+
+    if (density != null)
+        return DPI_NAME.get(density);
+    return "UNIVERSAL";
+}
+
+def getAbiName(String abi) {
+
+    if (abi == null)
+        return "UNIVERSAL";
+    return abi;
+}
+
+def getAPKArchiveFolder(variant) {
+  return "${rootDir}/archive/" + "V" + variant.mergedFlavor.versionCode;
+}
+
+def renameAPKFile(variant, density, output) {
+
+  def abiName = output.getFilter(com.android.build.OutputFile.ABI)
+  def formattedDate = new Date().format('dd-MMM-yy, HH.mm.ss')
+
+  def fileName = ""
+  fileName += "("+getAbiName(abiName)+")"
+  fileName += " "+variant.name
+  fileName += "-tymoff"
+  fileName += "-" + variant.mergedFlavor.versionName;
+  fileName += "-Ver." + variant.mergedFlavor.versionCode + "("+output.versionCodeOverride+")";
+  fileName += "_(date."+formattedDate+")"
+  /*fileName += "-" + getDpiId(density);
+  fileName += "-" + getDpiName(density);*/
+  fileName += ".apk";
+  return fileName;
+}
+
+def archiveAPK(variant, output) {
+
+  String density = output.getFilter(com.android.build.OutputFile.DENSITY);
+  def originZipAlignedApkFile = output.outputFile;
+  def renameAPKFile = renameAPKFile(variant, density, output);
+  copy {
+    from "$originZipAlignedApkFile"
+    into getAPKArchiveFolder(variant)
+    rename("$originZipAlignedApkFile.name", "$renameAPKFile")
+  }
+}
+
+flutter {
+  source '../..'
+}
+
+dependencies {
+  implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+  testImplementation 'junit:junit:4.12'
+
+  implementation 'androidx.multidex:multidex:2.0.0'
+  implementation 'com.google.firebase:firebase-core:16.0.1'
+  implementation 'androidx.arch.core:core-runtime:2.0.0'
+  implementation 'androidx.arch.core:core-common:2.0.0'
+
+  implementation('com.crashlytics.sdk.android:crashlytics:2.9.9@aar') { transitive = true; }
+}
+
+apply plugin: 'io.fabric'
+apply plugin: 'com.google.gms.google-services'
+com.google.gms.googleservices.GoogleServicesPlugin.config.disableVersionCheck = true

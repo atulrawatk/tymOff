@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "418600127287",
+    "firebase_url": "https://tymoff-original.firebaseio.com",
+    "project_id": "tymoff-original",
+    "storage_bucket": "tymoff-original.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:418600127287:android:3b4f44b6648225840a68b2",
+        "android_client_info": {
+          "package_name": "com.tymoff"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "418600127287-cd1o710l1s314impvighprdrfdf73rgo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB5NO0tNyy0N0X1O71-4l4GzhaWide8rIM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "418600127287-cd1o710l1s314impvighprdrfdf73rgo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
